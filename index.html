@@ -2122,24 +2122,6 @@ function applyBaseStyle(ws) {
     }
   }
 }
-
-function applyBaseStyle(ws) {
-  const ref = ws["!ref"];
-  if (!ref) return;
-
-  const range = XLSX.utils.decode_range(ref);
-  for (let R = range.s.r; R <= range.e.r; R++) {
-    for (let C = range.s.c; C <= range.e.c; C++) {
-      const addr = XLSX.utils.encode_cell({ r: R, c: C });
-      const cell = ws[addr];
-      if (!cell) continue;
-
-      cell.s = cell.s || {};
-      cell.s.font = { ...(cell.s.font || {}), name: BASE_FONT };
-      cell.s.alignment = { ...(cell.s.alignment || {}), vertical: "center" };
-    }
-  }
-}
   
 const BORDER_THIN = {
   top: { style: "thin", color: { rgb: "FFD1D5DB" } },
